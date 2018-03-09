@@ -1,3 +1,6 @@
+/*
+Our Google API key: AIzaSyCCMdJYDCf_gZ5O9AODdeEe1NMBXx9jj8w
+*/
 //Gets the user's location
 function getLocation() {
     if (navigator.geolocation) {
