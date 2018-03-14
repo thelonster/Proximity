@@ -2,16 +2,15 @@
 Our Google API key: AIzaSyCCMdJYDCf_gZ5O9AODdeEe1NMBXx9jj8w
 */
 //Gets the user's location
+var userCounty;
+
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
+        return navigator.geolocation.getCurrentPosition();
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
-
-//temporarily here, used to decode the geolocation, will use in HTML
-var geocoder = new google.maps.Geocoder;
 
 function decodeGeoLocation(geocoder, position) {
     //position from getLocation used to get lat and long
@@ -38,5 +37,10 @@ function decodeGeoLocation(geocoder, position) {
                 return county;
         }
     }
+}
 
+function getUserLocation() {
+    var geocoder = new google.maps.Geocoder;
+    var position = getLocation();
+    userCounty = decodeGeoLocation(geocoder, position);
 }
