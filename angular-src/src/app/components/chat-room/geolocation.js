@@ -39,6 +39,7 @@ function decodeGeoLocation(geocoder, position) {
     }
 }
 
+//this function is called with the google API
 function getUserLocation() {
     var geocoder = new google.maps.Geocoder;
     var position = getLocation();
