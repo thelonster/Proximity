@@ -3,6 +3,8 @@ Our Google API key: AIzaSyCCMdJYDCf_gZ5O9AODdeEe1NMBXx9jj8w
 */
 //Gets the user's location
 var userCounty;
+const var countyList - = ["Los Angeles County","Orange County","Riverside County","San Diego County","San Bernardino County",
+                         "Kern County","Ventura County","Santa Barbara County","San Luis Obispo County","Imperial County"];
 
 function getLocation() {
     if (navigator.geolocation) {
@@ -44,4 +46,22 @@ function getUserLocation() {
     var geocoder = new google.maps.Geocoder;
     var position = getLocation();
     userCounty = decodeGeoLocation(geocoder, position);
+}
+
+function manualUserPrompt() {
+    var manCounty = prompt("Please enter your county:","Orange County");
+    while (!checkCounty(tCounty)) {
+        alert("Please choose a valid Southern California County");
+        manCounty = prompt("Please enter your county:","Orange County");
+    }
+    county = manCounty;
+}
+
+function checkCounty(var tCounty) {
+    var found = false;
+    for (var c = 0; c < countyList.length; c++) {
+        if (tCounty == manCounty[c])
+            found = true;
+    }
+    return found;
 }
