@@ -5,10 +5,9 @@ Our Google API key: AIzaSyCCMdJYDCf_gZ5O9AODdeEe1NMBXx9jj8w
 var userCounty;
 var countyList = ["Los Angeles County","Orange County","Riverside County","San Diego County","San Bernardino County",
                          "Kern County","Ventura County","Santa Barbara County","San Luis Obispo County","Imperial County"];
-var pos;
-var crd;
-var longi = 33.8728111;
-var lati = -117.84871449999999;
+var theGeocoder;
+var longi;
+var lati;
 var options = {
     enableHighAccuracy: true,
     timeout: 5000,
@@ -17,17 +16,17 @@ var options = {
 
 function getLocation() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(savePosition,error,options);
+        navigator.geolocation.getCurrentPosition(savePosition,manualUserPrompt,options);
     } else {
         x.innerHTML = "Geolocation is not supported by this browser.";
     }
 }
 
 function savePosition(position) {
-pos = position;
-crd = pos.coords;
+crd = position.coords;
 longi = crd.longitude;
 lati = crd.latitude;
+decodeGeoLocation(theGeocoder);
 }
 
 function error() {
@@ -46,28 +45,27 @@ function decodeGeoLocation(geocoder) {
             for (var i = 0; i < results.length; i++) {
 								var rtypes = results[i].types;
 								for (var j = 0; j < rtypes.length; j++) {
-										if (rtypes[j] == "administrative_area_level_2")
+										if (rtypes[j] == "administrative_area_level_2") //county level
 												county = results[i].formatted_address;
 								}
 						}
             county = county.substring(0,county.indexOf(","));
             if (county != 'NONE')
-                return county;
+                userCounty = county;
         }
     });
 }
 
 //this function is called with the google API
 function getUserLocation() {
-    var geocoder = new google.maps.Geocoder;
-    var position = getLocation();
-    userCounty = decodeGeoLocation(geocoder, position);
+    theGeocoder = new google.maps.Geocoder;
+    getLocation();
 }
 
 function manualUserPrompt() {
-    var manCounty = prompt("Please enter your county:","Orange County");
+    var manCounty = prompt("Sorry but we couldn't get your location\n\nPlease enter your county:","Orange County");
     while (!checkCounty(tCounty)) {
-        alert("Please choose a valid Southern California County");
+        alert("Please choose a valid Southern California County (capitalized)");
         manCounty = prompt("Please enter your county:","Orange County");
     }
     county = manCounty;
