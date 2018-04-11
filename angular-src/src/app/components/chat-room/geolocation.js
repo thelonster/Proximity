@@ -29,11 +29,6 @@ lati = crd.latitude;
 decodeGeoLocation(theGeocoder);
 }
 
-function error() {
-    alert("Unable to get your location");
-}
-
-
 function decodeGeoLocation(geocoder) {
     //position from getLocation used to get lat and long
     var latlng = {lat: lati, lng: longi}
