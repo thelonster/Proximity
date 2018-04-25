@@ -20,7 +20,7 @@ import { ChatService } from "./services/chat.service";
 import { ActiveListComponent } from './components/active-list/active-list.component';
 
 const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
