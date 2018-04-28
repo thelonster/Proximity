@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
 
-      <a routerLink="/" class="navbar-brand navbar-left" (click)="onNavigate()">
+      <a routerLink="/home" class="navbar-brand navbar-left" (click)="onNavigate()">
         <span><img alt="Brand" src="assets/img/logo.ico" width="30px" height="30px"></span>
         <p id = "logo_left">Proximity</p>
       </a>
@@ -18,15 +18,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="onNavigate()"><a routerLink="/">Home</a></li>
+        <li routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="onNavigate()"><a routerLink="/home">Home</a></li>
         <li *ngIf="authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/chat">Chat</a></li>
-      </ul>
-
-      <ul class="nav navbar-right">
-        <li class = "navbar_fix_up" *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/login">Login</a></li>
-        <li class = "navbar_fix_up" *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/register">Register</a></li>
-        <li class = "navbar_fix_up" *ngIf="authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/profile">Profile</a></li>
-        <li class = "navbar_fix_up" *ngIf="authService.loggedIn()"><a href="#" (click)="onLogoutClick()">Logout</a></li>
+        <li *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/login">Login</a></li>
+        <li *ngIf="!authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/register">Register</a></li>
+        <li *ngIf="authService.loggedIn()" routerLinkActive="active" (click)="onNavigate()"><a routerLink="/profile">Profile</a></li>
+        <li *ngIf="authService.loggedIn()"><a href="#" (click)="onLogoutClick()">Logout</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
