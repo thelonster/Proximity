@@ -6,7 +6,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const log = require('../log');
 
-// register
+// utilized the router middleware of express to change the HTTP post reaction from user
 router.post('/register', (req, res, next) => {
   let response = {success: false};
   if (!(req.body.password == req.body.confirmPass)) {
@@ -37,6 +37,7 @@ router.post('/register', (req, res, next) => {
   }
 });
 
+//router middleware of express to change the HTTP post reaction when authenticating
 router.post("/authenticate", (req, res, next) => {
   let body = req.body;
   let response = {success: false};
@@ -65,7 +66,7 @@ router.post("/authenticate", (req, res, next) => {
   });
 });
 
-// profile
+// profile, changing HTTP get request for the profile
 router.get('/profile', passport.authenticate("jwt", {session: false}), (req, res, next) => {
   let response = {success: true};
   response.msg = "Profile retrieved successfuly";

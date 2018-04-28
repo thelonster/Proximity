@@ -24,9 +24,18 @@ UserSchema.statics.getUserByUsername = function(username, callback) {
   User.findOne(query, callback);
 }
 
+/*UserSchema.statics.getUserByUsername2 = function(username, callback) {
+  let query = {username: username};
+
+    let query = {username: username[i]};
+    User.findOne(query, callback);
+
+}*/
+
 UserSchema.statics.getUsers = () => {
   return User.find({}, '-password');
 }
+
 
 UserSchema.statics.addUser = function(newUser, callback) {
   User.getUserByUsername(newUser.username, (err, user) => {

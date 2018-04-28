@@ -29,8 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // set routes
 // TODO: change to '/user' and '/message'
 app.use(`${config.root}/users`, userRoutes);
+
 app.use(`${config.root}/messages`, messageRoutes);
 
+//app.use('/chat', messageRoutes);
 // set error handling middleware
 app.use(errorMiddleware);
 

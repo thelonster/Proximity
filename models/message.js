@@ -26,6 +26,7 @@ const MessageSchema = mongoose.Schema({
 
 MessageSchema.statics.addMessage = (message, callback) => {
   message.save(callback);
+  console.log("yo we out here saving messages");
 };
 
 MessageSchema.statics.getMessages = (callback) => {

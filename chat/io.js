@@ -7,13 +7,10 @@ const connections = [];
 const initialize = (server) => {
   const io = socketIo(server, {
     path: '/chat-app-api',
-    origins: 'localhost:* petrub.com:* http://petrub.com:* http://www.petrub.com:*',
+    origins: 'localhost:*',
   });
   io.origins([
-    'localhost:*',
-    'petrub.com:*',
-    'http://petrub.com:*',
-    'http://www.petrub.com:*'
+    'localhost:*'
   ]);
 
   io.on("connection", (socket) => {

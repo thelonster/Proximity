@@ -118,6 +118,59 @@ ConversationSchema.statics.getConversationByName = (participant1, participant2, 
   });
 };
 
+//THIS IS THE BEGINNING OF MY ATTEMPT TO STORE/RETRIEVE VARIABLE USER CONVO
+/*
+ConversationSchema.statics.getConversationByConvoName = (participantsArr, callback) => {
+  let combo1 = participantsArr;
+
+      Conversation.findOne({name: combo1}, (err, conversation) => {
+        //if conversation is null we get users id and name
+        if (err || conversation == null) {
+        
+          User.getUserByUsername2(combo1[i], (err1, user1) => {
+            if (err1 || user1 == null) {
+              return callback("The user could not be found");
+            }
+
+              let mihai = {
+                username: user1.username,
+                id: user1._id
+              };
+            
+              let participants = mihai;
+              let newConv = new Conversation({
+                participants: participants,
+                name: "" + mihai[0].username + "-" + mihai[1].username
+              });
+
+              Conversation.addConversation(newConv, (err, addedConv) => {
+                if (err) {
+                  console.log(err);
+                  let error = "There was an error on getting the conversation";
+                  return callback(error);
+                } else {
+                  return callback(null, addedConv);
+                }
+              });
+            });
+          });
+        }
+          //the conversation can be found already and does not need to be created
+        } else {
+          Message.getMessagesByConv(conversation._id, (err, messages) => {
+            if (err) {
+              let error = "There was an error on getting messages";
+              return callback(error);
+            } else {
+              let conversationObj = extend({}, conversation);
+              conversationObj.messages = messages;
+              return callback(null, conversationObj);
+            }
+          });
+        }
+      });
+  });*/
+
 
 const Conversation = mongoose.model('Conversation', ConversationSchema);
 module.exports = Conversation;
